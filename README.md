@@ -53,4 +53,4 @@ Codefellows 401 JavaScript
 
 #### UML
 
-![UML Example](./referenceLab11-Whiteboard.jpg)
+![UML Example](./reference/referenceLab11-Whiteboard.jpg)
