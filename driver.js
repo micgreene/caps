@@ -53,4 +53,5 @@ function setDelivered(orderDetails){
   //update the messaging system for new event
   eventMessage(eventType, orderDetails);
 }
+
 module.exports = { setIntransit, setDelivered };
