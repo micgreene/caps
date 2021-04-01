@@ -25,6 +25,34 @@ io.on('connection', (socket) => {
     io.emit('pickup', payload);
   });
 
+  socket.on('create-pickup', (payload) => {
+    console.log('The server heard the \'create-pickup\' event.');
+    // the client is going to hear this and run some code
+    // Technically, you are calling a function on some other app, over the internet!
+    io.emit('pickup', payload);
+  });
+
+  socket.on('create-pickup', (payload) => {
+    console.log('The server heard the \'create-pickup\' event.');
+    // the client is going to hear this and run some code
+    // Technically, you are calling a function on some other app, over the internet!
+    io.emit('pickup', payload);
+  });
+
+  socket.on('create-in-transit', (payload) => {
+    console.log('The server heard the \'create-intransit\' event.');
+    // the client is going to hear this and run some code
+    // Technically, you are calling a function on some other app, over the internet!
+    io.emit('in-transit', payload);
+  });
+
+  socket.on('create-delivered', (payload) => {
+    console.log('The server heard the \'create-delivered\' event.');
+    // the client is going to hear this and run some code
+    // Technically, you are calling a function on some other app, over the internet!
+    io.emit('delivered', payload);
+  });
+
   // socket.on('goodbye', (payload) => {
   //   console.log('The server heard the goodbye event');
   //   io.emit('bye');
