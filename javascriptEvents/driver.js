@@ -1,7 +1,7 @@
 'use strict';
 
 //internal modules
-const events = require('./javascriptEvents/events.js');
+const events = require('./events.js');
 const eventMessage = require('./event-message.js');
 
 require('dotenv').config();

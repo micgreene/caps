@@ -5,7 +5,7 @@ const { it } = require('@jest/globals');
 const supertest = require('supertest');
 
 //local modules to be tested
-const driverEvents = require('../driver.js');
+const driverEvents = require('../../javascriptEvents/driver.js');
 
 //spy on console for logs
 const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
