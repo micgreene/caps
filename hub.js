@@ -1,11 +1,9 @@
 'use strict';
 
-// brain.js
 
 const port = process.env.PORT || 3501;
 
 // Get our connections built
-
 // This is the "/" (home) route
 const io = require('socket.io')(port);
 
