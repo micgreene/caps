@@ -5,7 +5,7 @@ const faker = require('faker');
 
 //internal modules
 const events = require('./events.js');
-const eventMessage = require('./event-message.js');
+const eventMessage = require('../event-message.js');
 
 
 require('dotenv').config();
