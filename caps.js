@@ -22,11 +22,14 @@ capsNameSpace.on('connection', (socket) => {
   console.log('Welcome, your socket id is:', socket.id);
 
   //whenever a vendor successfully joins a new room, welcome them in and give them the room name in the console
-  socket.on('enter-room', payload => {
-    socket.join(`room-${payload}`);
+  socket.on('enter-room', (payload) => {
+    //allows vendors to join their owb private rooms
+    socket.join(`room-${payload.storeName}`);
 
     //Send this event to everyone in the room.
-    io.of('/caps').to(`room-${payload}`).emit('connectToRoom', `You are in room-${payload}`);
+    io.of('/caps').to(`room-${payload.storeName}`).emit('connectToRoom', `You are in room-${payload.storeName}`);
+
+    capsNameSpace.emit('getAll', { storeName:payload.storeName, type:payload.type });
   });    
 
   //pick-up is emitted to everyone in the namespace
@@ -46,10 +49,18 @@ capsNameSpace.on('connection', (socket) => {
   //delivered is only emitted to vendors in the same room as the Storename of the pickup
   socket.on('create-delivered', (payload) => {
     console.log('The server heard the \'create-delivered\' event.');
-    // the client in the proper room is going to hear this and run some code
+    // create a new 'delivered' message in the queeu for this vendor
+    capsNameSpace.emit('new-deliveryMsg', payload);
+
     io.of('/caps').to(`room-${payload.storeName}`).emit('delivered', payload);
   });
-
+  
+  socket.on('return-messages', (payload) =>{
+    if(payload.type === 'delivered'){
+      io.of('/caps').to(`room-${payload.details.storeName}`).emit('delivered', payload.details);
+    }
+  })
+  
   //if there is a connection problem return an error message explaining why
   io.on('connect_error', (err) => {
     console.log(`connect_error due to ${err.message}`);
